@@ -59,12 +59,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 //CONFIGURE PASSPORT
 require('./config/passport')(passport);
 
-//CONFIGURE DB
-const db = require('./config/keys');
+
 
 //CONNECT TO MONGODB
 mongooose.connect(
-    db, 
+    'mongodb://mongo:27017/docker-node-mongo', 
     {useNewUrlParser: true, useUnifiedTopology: true}
 ).then(() => {
     console.log('MONGODB CONNECTED');
