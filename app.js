@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use(flash());
 
 //GLOBAL VARS
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
@@ -48,7 +48,7 @@ app.use(logger('dev'));
 
 //BODY PARSER AND JSON PARSER
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 //COOKIE PARSER
 app.use(cookieParser());
@@ -63,8 +63,8 @@ require('./config/passport')(passport);
 
 //CONNECT TO MONGODB
 mongooose.connect(
-    'mongodb://mongo:27017/docker-node-mongo', 
-    {useNewUrlParser: true, useUnifiedTopology: true}
+    'mongodb://mongo:27017/docker-node-mongo',
+    { useNewUrlParser: true, useUnifiedTopology: true }
 ).then(() => {
     console.log('MONGODB CONNECTED');
 }).catch(err => console.log(err));
@@ -75,20 +75,20 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     next(createError(404));
-  });
-  
-  // error handler
-  app.use(function(err, req, res, next) {
+});
+
+// error handler
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-  
+
     // render the error page
     res.status(err.status || 500);
     res.render('error');
-  });
+});
 
 const PORT = process.env.PORT || 3000;
 

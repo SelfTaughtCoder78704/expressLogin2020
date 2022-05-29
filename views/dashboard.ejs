@@ -1,12 +1,17 @@
 <%- include ("partials/header") %>
 <div class="jumbotron text-center">
-    <div class="custom">
-        <h1 class="mt-4">Dashboard</h1>
-        <p class="lead mb-3">WELCOME <%= user.firstName.toUpperCase() %></p>
-    </div>
-      
+  <div class="custom">
+    <h1 class="mt-4">Dashboard</h1>
+    <p class="lead mb-3">WELCOME <%= user.firstName.toUpperCase() %></p>
+    <p class="lead mb-3">Your Components:</p>
+    <ul>
+      <% for (var i = 0; i < components.length; i++) { %>
+      <li><%= components[i].name || "" %></li>
+      <% } %>
+    </ul>
+    <p><%= test %> Else</p>
+  </div>
 </div>
-
 
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
 <%- include ("partials/footer") %>
